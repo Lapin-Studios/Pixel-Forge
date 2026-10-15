@@ -1,0 +1,44 @@
+{
+  "name": "Volcano",
+  "description": "A lava-filled mountain between a forest and a lake. Erase a channel in its flank to release the lava: trees ignite, snow melts and obsidian forms where it meets the lake.",
+  "width": 560,
+  "height": 300,
+  "ambient": 18,
+  "seed": 9001,
+  "camera": { "x": 280, "y": 190, "zoom": 2 },
+  "ops": [
+    { "op": "terrain", "mat": "stone", "base": 262, "amp": 14, "freq": 0.015, "seed": 5,
+      "peaks": [{ "x": 280, "w": 150, "h": 140 }, { "x": 200, "w": 50, "h": 25 }],
+      "layers": [{ "mat": "grass", "depth": 1 }, { "mat": "dirt", "depth": 7 }] },
+    { "op": "noise", "mat": "basalt", "within": "stone", "x": 180, "y": 120, "w": 200, "h": 180, "scale": 0.05, "threshold": 0.55, "seed": 21 },
+    { "op": "noise", "mat": "gold_ore", "within": "stone", "scale": 0.09, "threshold": 0.74, "seed": 31 },
+    { "op": "noise", "mat": "coal", "within": "stone", "scale": 0.07, "threshold": 0.73, "seed": 41 },
+    { "op": "noise", "mat": "iron_ore", "within": "stone", "scale": 0.08, "threshold": 0.75, "seed": 51 },
+    { "op": "circle", "mat": "lava", "x": 280, "y": 235, "r": 32, "temp": 1350 },
+    { "op": "rect", "mat": "lava", "x": 274, "y": 128, "w": 12, "h": 110, "temp": 1350 },
+    { "op": "circle", "mat": "empty", "x": 280, "y": 124, "r": 13 },
+    { "op": "circle", "mat": "lava", "x": 280, "y": 133, "r": 6, "temp": 1400 },
+    { "op": "rect", "mat": "snow", "x": 226, "y": 80, "w": 30, "h": 5, "onlyEmpty": true },
+    { "op": "rect", "mat": "snow", "x": 304, "y": 80, "w": 30, "h": 5, "onlyEmpty": true },
+    { "op": "rect", "mat": "empty", "x": 432, "y": 230, "w": 112, "h": 34 },
+    { "op": "rect", "mat": "granite", "x": 428, "y": 246, "w": 4, "h": 20 },
+    { "op": "rect", "mat": "granite", "x": 544, "y": 246, "w": 4, "h": 20 },
+    { "op": "rect", "mat": "sand", "x": 432, "y": 262, "w": 112, "h": 3 },
+    { "op": "rect", "mat": "water", "x": 432, "y": 248, "w": 112, "h": 14 },
+
+    { "op": "line", "mat": "wood", "x1": 50, "y1": 262, "x2": 50, "y2": 228, "width": 3 },
+    { "op": "circle", "mat": "leaves", "x": 50, "y": 222, "r": 10, "onlyEmpty": true },
+    { "op": "line", "mat": "wood", "x1": 90, "y1": 262, "x2": 90, "y2": 220, "width": 3 },
+    { "op": "circle", "mat": "leaves", "x": 90, "y": 214, "r": 12, "onlyEmpty": true },
+    { "op": "line", "mat": "wood", "x1": 130, "y1": 262, "x2": 130, "y2": 232, "width": 3 },
+    { "op": "circle", "mat": "leaves", "x": 130, "y": 226, "r": 9, "onlyEmpty": true },
+    { "op": "line", "mat": "wood", "x1": 168, "y1": 255, "x2": 168, "y2": 225, "width": 3 },
+    { "op": "circle", "mat": "leaves", "x": 168, "y": 219, "r": 9, "onlyEmpty": true },
+    { "op": "scatter", "mat": "flower", "x": 20, "y": 255, "w": 140, "h": 8, "chance": 0.02, "onlyEmpty": true },
+    { "op": "rect", "mat": "bedrock", "x": 0, "y": 294, "w": 560, "h": 6 }
+  ],
+  "objects": [
+    { "type": "bucket", "x": 470, "bottom": 236 },
+    { "type": "thermometer", "x": 372, "bottom": 140 }
+  ]
+}

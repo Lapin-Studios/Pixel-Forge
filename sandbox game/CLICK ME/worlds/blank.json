@@ -1,0 +1,9 @@
+{
+  "name": "Blank Map",
+  "description": "A completely empty world. The bottom edge of the map acts as the floor.",
+  "width": 480,
+  "height": 270,
+  "ambient": 22,
+  "ops": [],
+  "objects": []
+}

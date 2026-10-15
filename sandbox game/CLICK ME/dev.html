@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pixel Forge (dev) — Physics Sandbox</title>
+  <meta name="description" content="A pixel physics sandbox focused on metalworking, crafting and machines.">
+  <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="styles/interface.css">
+  <link rel="stylesheet" href="styles/effects.css">
+</head>
+<body>
+  <div id="splash" aria-label="Lapin Studios"><img src="assets/lapin-studios.webp" alt="Lapin Studios"></div>
+  <div id="app">
+    <header id="topbar">
+      <button class="icon-btn mobile-only" data-action="toggle-sidebar" title="Materials (Tab)">☰</button>
+      <button class="icon-btn mobile-only" data-action="toggle-inspector" title="Inspector">ℹ</button>
+      <div class="brand">
+        <img src="assets/icons/logo.svg" alt="" width="28" height="28">
+        <span class="brand-name">PIXEL FORGE</span>
+        <span id="world-name" class="world-name"></span>
+      </div>
+
+      <div class="tb-group" role="group" aria-label="Simulation">
+        <button id="btn-play" class="icon-btn play-btn" data-action="play" title="Pause (Space)">❚❚</button>
+        <button class="icon-btn" data-action="step" title="Step one tick (N)">⏭</button>
+        <div id="speed-select" class="segmented" title="Simulation speed (+ / -)"></div>
+      </div>
+
+      <div class="tb-group" role="group" aria-label="History">
+        <button class="icon-btn" data-action="undo" title="Undo (Ctrl+Z)">↶</button>
+        <button class="icon-btn" data-action="redo" title="Redo (Ctrl+Y)">↷</button>
+      </div>
+
+      <div class="tb-group" role="group" aria-label="View">
+        <button class="icon-btn" data-action="heatview" title="Thermal view (H)">🌡</button>
+        <button class="icon-btn" data-action="powerview" title="Power view (V): live wires glow yellow, dead ones red">⚡</button>
+        <button class="icon-btn" data-action="fit" title="Fit world (Home)">⤢</button>
+      </div>
+
+      <div class="tb-spacer"></div>
+
+      <div class="tb-group tb-menu" role="group" aria-label="World">
+        <button class="text-btn" data-action="menu" title="Main menu (Esc)">🏠 <span>Menu</span></button>
+        <button class="text-btn" data-action="presets" title="Example worlds">🌍 <span>Worlds</span></button>
+        <button class="text-btn" data-action="save" title="Save (Ctrl+S)">💾 <span>Save</span></button>
+        <button class="text-btn" data-action="load" title="Load (Ctrl+O)">📂 <span>Load</span></button>
+        <button class="text-btn" data-action="book" title="Recipe book (B)">📖 <span>Recipes</span></button>
+        <button class="text-btn" data-action="tutorial" title="Interactive tutorial">🎓 <span>Tutorial</span></button>
+        <button class="icon-btn" data-action="settings" title="Settings &amp; controls (?)">⚙</button>
+        <button class="icon-btn danger" data-action="clear" title="Clear world">🗑</button>
+      </div>
+    </header>
+
+    <aside id="sidebar" aria-label="Materials and objects">
+      <div class="sidebar-head">
+        <input id="mat-search" type="search" placeholder="Search everything…" autocomplete="off" spellcheck="false">
+        <div id="palette-tabs" class="pal-tabs" role="tablist" aria-label="Material tabs"></div>
+        <div id="palette-title" class="pal-title"></div>
+      </div>
+      <div id="palette"></div>
+    </aside>
+
+    <main id="viewport">
+      <canvas id="game-canvas" aria-label="Simulation canvas"></canvas>
+      <div id="paused-badge">PAUSED</div>
+      <div id="hint-bar"></div>
+      <div id="tutorial-panel" hidden></div>
+      <div id="toasts" aria-live="polite"></div>
+    </main>
+
+    <aside id="inspector" aria-label="Inspector">
+      <div class="insp-header">
+        <span>INSPECTOR</span>
+        <span id="current-material" class="current-mat"></span>
+      </div>
+      <div id="inspector-body"></div>
+    </aside>
+
+    <footer id="statusbar">
+      <div id="tool-buttons" class="tool-row"></div>
+      <div class="brush-ctl">
+        <span class="lbl">Brush</span>
+        <input id="brush-size" type="range" min="0" max="40" value="3" aria-label="Brush size">
+        <span id="brush-size-label" class="brush-val">7</span>
+        <button id="brush-shape" class="mini-btn" title="Brush shape">●</button>
+        <button id="brush-replace" class="mini-btn" title="Replace mode">⇄</button>
+        <button id="brush-dir" class="mini-btn" hidden>Dir →</button>
+      </div>
+      <div class="status-info">
+        <span id="status-cursor">—</span>
+        <span id="status-cells"></span>
+        <span id="status-perf"></span>
+      </div>
+    </footer>
+  </div>
+
+  <div id="tooltip" hidden></div>
+
+  <div id="modal-root" hidden>
+    <div class="modal-backdrop"></div>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <div class="modal-head">
+        <h2 id="modal-title"></h2>
+        <button id="modal-close" class="icon-btn" title="Close (Esc)">✕</button>
+      </div>
+      <div id="modal-body"></div>
+    </div>
+  </div>
+
+  <div id="boot">
+    <div class="boot-card">
+      <img src="assets/icons/logo.svg" alt="" width="64" height="64">
+      <h1>PIXEL FORGE</h1>
+      <p class="boot-msg">Stoking the furnace…</p>
+      <div class="boot-bar"><div></div></div>
+      <noscript><p>Pixel Forge needs JavaScript.</p></noscript>
+    </div>
+  </div>
+
+  <!-- Bundled build so the game runs by double-clicking this file (no server needed).
+       Generated from src/ by build.py; dev.html loads src/ directly as ES modules. -->
+  <script type="module" src="src/main.js"></script>
+</body>
+</html>

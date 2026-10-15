@@ -1,0 +1,33 @@
+{
+  "name": "Empty Workshop",
+  "description": "A clean workshop with the essential tools. Everything else is up to you.",
+  "width": 480,
+  "height": 270,
+  "ambient": 22,
+  "seed": 77,
+  "camera": { "x": 200, "y": 205, "zoom": 3 },
+  "ops": [
+    { "op": "rect", "mat": "bedrock", "x": 0, "y": 262, "w": 480, "h": 8 },
+    { "op": "rect", "mat": "concrete", "x": 0, "y": 250, "w": 480, "h": 12 },
+    { "op": "rect", "mat": "brick", "x": 0, "y": 140, "w": 4, "h": 110 },
+    { "op": "rect", "mat": "brick", "x": 476, "y": 140, "w": 4, "h": 110 },
+    { "op": "circle", "mat": "coal", "x": 20, "y": 253, "r": 10, "onlyEmpty": true },
+    { "op": "frame", "mat": "brick", "x": 420, "y": 228, "w": 56, "h": 22, "t": 1 },
+    { "op": "rect", "mat": "brick", "x": 438, "y": 228, "w": 1, "h": 22 },
+    { "op": "rect", "mat": "brick", "x": 457, "y": 228, "w": 1, "h": 22 },
+    { "op": "rect", "mat": "gold_ore", "x": 421, "y": 233, "w": 17, "h": 16 },
+    { "op": "rect", "mat": "copper_ore", "x": 439, "y": 233, "w": 18, "h": 16 },
+    { "op": "rect", "mat": "charcoal", "x": 458, "y": 233, "w": 17, "h": 16 }
+  ],
+  "objects": [
+    { "type": "furnace", "x": 60, "bottom": 249, "state": { "on": false, "target": 1300, "fuel": 30000 } },
+    { "type": "crucible", "x": 110, "bottom": 249 },
+    { "type": "thermometer", "x": 132, "bottom": 249 },
+    { "type": "casting_table", "x": 190, "bottom": 249 },
+    { "type": "mold_gold_bar", "x": 178, "bottom": 241 },
+    { "type": "mold_ingot", "x": 202, "bottom": 241 },
+    { "type": "bucket", "x": 240, "bottom": 249 },
+    { "type": "workbench", "x": 300, "bottom": 249 },
+    { "type": "ladle", "x": 300, "bottom": 237 }
+  ]
+}

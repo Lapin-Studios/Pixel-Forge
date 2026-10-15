@@ -1,0 +1,58 @@
+{
+  "name": "Small Factory",
+  "description": "An ore funnel feeds a conveyor into an electric smelter; a thermostat-controlled kiln fires clay; fans blow a coal fire; switched ceiling lamps.",
+  "width": 480,
+  "height": 270,
+  "ambient": 22,
+  "seed": 2718,
+  "camera": { "x": 230, "y": 190, "zoom": 2.6 },
+  "ops": [
+    { "op": "rect", "mat": "bedrock", "x": 0, "y": 262, "w": 480, "h": 8 },
+    { "op": "rect", "mat": "concrete", "x": 0, "y": 250, "w": 480, "h": 12 },
+
+    { "op": "line", "mat": "brick", "x1": 20, "y1": 148, "x2": 40, "y2": 176, "width": 2 },
+    { "op": "line", "mat": "brick", "x1": 65, "y1": 148, "x2": 44, "y2": 176, "width": 2 },
+    { "op": "rect", "mat": "gold_ore", "x": 26, "y": 128, "w": 32, "h": 20 },
+
+    { "op": "rect", "mat": "conveyor", "x": 30, "y": 185, "w": 161, "h": 2, "life": 1 },
+    { "op": "rect", "mat": "battery", "x": 26, "y": 185, "w": 4, "h": 2 },
+    { "op": "rect", "mat": "stone", "x": 30, "y": 187, "w": 3, "h": 63 },
+    { "op": "rect", "mat": "stone", "x": 138, "y": 187, "w": 3, "h": 63 },
+
+    { "op": "rect", "mat": "battery", "x": 146, "y": 242, "w": 5, "h": 8 },
+    { "op": "line", "mat": "wire", "x1": 151, "y1": 247, "x2": 172, "y2": 247 },
+    { "op": "rect", "mat": "switch", "x": 158, "y": 246, "w": 2, "h": 3, "life": 1 },
+
+    { "op": "frame", "mat": "brick", "x": 290, "y": 200, "w": 51, "h": 50, "t": 3, "top": true },
+    { "op": "rect", "mat": "heating_element", "x": 293, "y": 246, "w": 44, "h": 1 },
+    { "op": "rect", "mat": "clay", "x": 300, "y": 236, "w": 30, "h": 10 },
+    { "op": "rect", "mat": "thermostat", "x": 337, "y": 238, "w": 1, "h": 9, "life": 950 },
+    { "op": "rect", "mat": "wire", "x": 338, "y": 244, "w": 7, "h": 1 },
+    { "op": "rect", "mat": "battery", "x": 345, "y": 241, "w": 5, "h": 9 },
+
+    { "op": "rect", "mat": "brick", "x": 370, "y": 170, "w": 3, "h": 80 },
+    { "op": "rect", "mat": "brick", "x": 398, "y": 170, "w": 3, "h": 80 },
+    { "op": "rect", "mat": "fan", "x": 373, "y": 248, "w": 19, "h": 2, "life": 3 },
+    { "op": "rect", "mat": "battery", "x": 392, "y": 246, "w": 6, "h": 4 },
+    { "op": "rect", "mat": "coal", "x": 373, "y": 236, "w": 25, "h": 12 },
+    { "op": "temp", "x": 373, "y": 236, "w": 25, "h": 3, "value": 700 },
+
+    { "op": "rect", "mat": "battery", "x": 6, "y": 242, "w": 5, "h": 8 },
+    { "op": "line", "mat": "wire", "x1": 8, "y1": 241, "x2": 8, "y2": 98 },
+    { "op": "rect", "mat": "switch", "x": 7, "y": 200, "w": 3, "h": 2, "life": 1 },
+    { "op": "line", "mat": "wire", "x1": 9, "y1": 98, "x2": 460, "y2": 98 },
+    { "op": "rect", "mat": "lamp", "x": 99, "y": 99, "w": 4, "h": 2 },
+    { "op": "rect", "mat": "lamp", "x": 199, "y": 99, "w": 4, "h": 2 },
+    { "op": "rect", "mat": "lamp", "x": 299, "y": 99, "w": 4, "h": 2 },
+    { "op": "rect", "mat": "lamp", "x": 399, "y": 99, "w": 4, "h": 2 }
+  ],
+  "objects": [
+    { "type": "electric_furnace", "x": 190, "bottom": 249, "state": { "on": true, "target": 1250 } },
+    { "type": "crucible", "x": 192, "bottom": 244 },
+    { "type": "casting_table", "x": 240, "bottom": 249 },
+    { "type": "mold_gold_bar", "x": 229, "bottom": 241 },
+    { "type": "mold_ingot", "x": 252, "bottom": 241 },
+    { "type": "workbench", "x": 440, "bottom": 249 },
+    { "type": "thermometer", "x": 320, "bottom": 235 }
+  ]
+}

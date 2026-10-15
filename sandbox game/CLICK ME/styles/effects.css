@@ -1,0 +1,60 @@
+/* Subtle animations: toasts, modal entrance, glowing accents, boot bar. */
+
+.toast {
+  opacity: 0;
+  transform: translateX(16px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+.toast.show { opacity: 1; transform: none; }
+
+#modal-root .modal { opacity: 0; transform: translateY(10px) scale(0.98); transition: opacity 0.16s ease, transform 0.16s ease; }
+#modal-root .modal-backdrop { opacity: 0; transition: opacity 0.16s ease; }
+#modal-root.open .modal { opacity: 1; transform: none; }
+#modal-root.open .modal-backdrop { opacity: 1; }
+
+#tutorial-panel.pop { animation: tut-pop 0.35s cubic-bezier(0.2, 1.4, 0.4, 1); }
+@keyframes tut-pop {
+  from { opacity: 0; transform: translateY(-8px) scale(0.97); }
+  to { opacity: 1; transform: none; }
+}
+
+.tut-wait::after {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin-left: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  animation: blink 1.1s infinite;
+  vertical-align: middle;
+}
+@keyframes blink { 50% { opacity: 0.2; } }
+
+.toast-discovery { animation: discovery-glow 1.4s ease-out; }
+@keyframes discovery-glow {
+  0% { box-shadow: 0 0 0 0 rgba(255, 138, 42, 0.6); }
+  100% { box-shadow: 0 0 0 14px rgba(255, 138, 42, 0); }
+}
+
+.play-btn.paused { animation: pulse-border 1.6s ease-in-out infinite; }
+@keyframes pulse-border {
+  50% { box-shadow: 0 0 0 3px rgba(255, 138, 42, 0.18); }
+}
+
+.boot-bar div { animation: boot-slide 1.1s ease-in-out infinite; }
+@keyframes boot-slide {
+  0% { transform: translateX(-110%); }
+  100% { transform: translateX(260%); }
+}
+
+.brand img { animation: ember 3.2s ease-in-out infinite; }
+@keyframes ember {
+  50% { filter: drop-shadow(0 0 10px rgba(255, 138, 42, 0.55)); }
+}
+
+.pal-item.active .mat-icon { box-shadow: 0 0 0 1px var(--accent), 0 0 8px rgba(255, 138, 42, 0.4); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
